@@ -37,6 +37,10 @@ class Client(commands.Bot):
             await message.channel.send(f'Good afternoon, {message.author}')
         if message.content.lower().startswith('night'):
             await message.channel.send(f'Good night, {message.author}')
+        if message.content.lower().startswith("lmao"):
+                embed = discord.Embed(title="Man You Suck 👎👎",description="lol")
+                await message.channel.send(embed=embed)
+            
 
     async def on_reaction_add(self, reaction, user):
         await reaction.message.channel.send('you reacted')
@@ -52,8 +56,21 @@ async def greetings(interaction: discord.Interaction):
     await interaction.response.send_message("Good day, fella!" )
 
 @client.tree.command(name="printer", description="i will print whatever you give me!", guild=discord.Object(id=int(SERVER)))
-async def greetings(interaction: discord.Interaction, num:int, printer:str):
+async def saythings(interaction: discord.Interaction, num:int, printer:str):
     await interaction.response.send_message(f"Printer says: `Number {num}`\n{printer}")
+
+@client.tree.command(name="embed", description="Embbed demo!", guild=discord.Object(id=int(SERVER)))
+async def embed(interaction: discord.Interaction):
+    embed = discord.Embed(title= "i am a Title", description="i am a description", url="https://www.youtube.com/watch?v=wUf1Vgp-2CE", color=discord.Color.gold())
+    embed.set_thumbnail(url="https://cdn.pixabay.com/photo/2023/12/07/11/11/girl-8435339_1280.png")
+    embed.add_field(name="text 1", value="value 1", inline=False)
+    embed.add_field(name="text 2", value="value 2", inline=True)
+    embed.add_field(name="text 3", value="value 3", inline=True)
+    embed.set_footer(text="this is a footer")
+    embed.set_author(name=interaction.user.name, url="https://cdn.pixabay.com/photo/2023/12/07/11/11/girl-8435339_1280.png", icon_url="https://cdn.pixabay.com/photo/2023/12/07/11/11/girl-8435339_1280.png")
+    await interaction.response.send_message(embed=embed)
+
+
 
 
 client.run(TOKEN)
