@@ -15,7 +15,7 @@ intents = discord.Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 
-# ---------------- Finnhub Fetch --------------
+# -------------- Finnhub Fetch --------------
 
 def fetch_finnhub_news():
     url = "https://finnhub.io/api/v1/news"
